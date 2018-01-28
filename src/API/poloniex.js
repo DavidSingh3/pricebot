@@ -1,6 +1,6 @@
 module.exports = {
-  call: async (p2, p1) => {
-    const pair = p1 + '_' + p2
+  call: async (p1, p2) => {
+    const pair = p2 + '_' + p1
     const prices = JSON.parse(await poloniex.call())
     return prices[pair] && prices[pair].last
   }
