@@ -14,7 +14,8 @@ const externals = {
   kucoin: require('./API/kucoin'),
   kraken: require('./API/kraken'),
   gdax: require('./API/gdax'),
-  bitfinex: require('./API/bitfinex')
+  bitfinex: require('./API/bitfinex'),
+  shapeshift: require('./API/shapeshift')
 }
 
 // routes will go here
@@ -27,14 +28,16 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     kucoin,
     kraken,
     gdax,
-    bitfinex
+    bitfinex,
+    shapeshift
   ] = await Promise.all([
     externals.poloniex.call(p.pair1, p.pair2),
     externals.binance.call(p.pair1, p.pair2),
     externals.kucoin.call(p.pair1, p.pair2),
     externals.kraken.call(p.pair1, p.pair2),
     externals.gdax.call(p.pair1, p.pair2),
-    externals.bitfinex.call(p.pair1, p.pair2)
+    externals.bitfinex.call(p.pair1, p.pair2),
+    externals.shapeshift.call(p.pair1, p.pair2)
   ])
 
   const result = {
@@ -43,7 +46,8 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     kucoin,
     kraken,
     gdax,
-    bitfinex
+    bitfinex,
+    shapeshift
   }
   res.json(result)
 })
