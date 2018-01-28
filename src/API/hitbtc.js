@@ -2,10 +2,10 @@ const request = require('../requests').request
 
 module.exports = {
   call: async (p1, p2) => {
-    const pair = p1 + '_' + p2
+    const pair = p1 + '' + p2
     const options = {
       method: 'GET',
-      url: 'https://shapeshift.io/marketinfo/' + pair,
+      url: 'https://api.hitbtc.com/api/2/public/ticker/' + pair,
       headers:
         {
           'Postman-Token': '382ad5c3-1310-1cd1-9d31-298f44ee115e',
@@ -13,8 +13,7 @@ module.exports = {
         }
     }
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
-    price = price && price.rate && price.rate
-    price = price && Number(price).toFixed(15).replace(/\.?0+$/,"")
+    price = price && price.last
     return price
   }
 }
