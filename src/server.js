@@ -15,12 +15,15 @@ const externals = {
   kraken: require('./API/kraken'),
   gdax: require('./API/gdax'),
   bitfinex: require('./API/bitfinex'),
-  shapeshift: require('./API/shapeshift')
+  shapeshift: require('./API/shapeshift'),
+  quadrigacx: require('./API/quadrigacx'),
+  lakebtc: require('./API/quadrigacx')
 }
 
 // routes will go here
 app.post('/price/:pair1/:pair2', async function (req, res) {
-  const p = req.params
+  const p1 = req.params.pair1
+  const p2 = req.params.pair2
 
   const [
     poloniex,
@@ -29,15 +32,19 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     kraken,
     gdax,
     bitfinex,
-    shapeshift
+    shapeshift,
+    quadrigacx,
+    lakebtc
   ] = await Promise.all([
-    externals.poloniex.call(p.pair1, p.pair2),
-    externals.binance.call(p.pair1, p.pair2),
-    externals.kucoin.call(p.pair1, p.pair2),
-    externals.kraken.call(p.pair1, p.pair2),
-    externals.gdax.call(p.pair1, p.pair2),
-    externals.bitfinex.call(p.pair1, p.pair2),
-    externals.shapeshift.call(p.pair1, p.pair2)
+    externals.poloniex.call(p1, p2),
+    externals.binance.call(p1, p2),
+    externals.kucoin.call(p1, p2),
+    externals.kraken.call(p1, p2),
+    externals.gdax.call(p1, p2),
+    externals.bitfinex.call(p1, p2),
+    externals.shapeshift.call(p1, p2),
+    externals.quadrigacx.call(p1, p2),
+    externals.lakebtc.call(p1, p2)
   ])
 
   const result = {
@@ -47,7 +54,9 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     kraken,
     gdax,
     bitfinex,
-    shapeshift
+    shapeshift,
+    quadrigacx,
+    lakebtc
   }
   res.json(result)
 })
