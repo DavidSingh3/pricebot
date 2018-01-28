@@ -11,7 +11,8 @@ const port = process.env.PORT || 3000
 const externals = {
   poloniex: require('./API/poloniex'),
   binance: require('./API/binance'),
-  kucoin: require('./API/kucoin')
+  kucoin: require('./API/kucoin'),
+  kraken: require('./API/kraken')
 }
 
 // routes will go here
@@ -21,10 +22,12 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
   const poloniex = await externals.poloniex.call(p.pair1, p.pair2)
   const binance = await externals.binance.call(p.pair1, p.pair2)
   const kucoin = await externals.kucoin.call(p.pair1, p.pair2)
+  const kraken = await externals.kraken.call(p.pair1, p.pair2)
   const result = {
     poloniex,
     binance,
-    kucoin
+    kucoin,
+    kraken
   }
   res.json(result)
 })
