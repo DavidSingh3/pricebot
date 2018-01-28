@@ -18,7 +18,8 @@ const externals = {
   shapeshift: require('./API/shapeshift'),
   quadrigacx: require('./API/quadrigacx'),
   lakebtc: require('./API/quadrigacx'),
-  hitbtc: require('./API/hitbtc')
+  hitbtc: require('./API/hitbtc'),
+  bisq: require('./API/bisq')
 }
 
 // routes will go here
@@ -36,7 +37,8 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     shapeshift,
     quadrigacx,
     lakebtc,
-    hitbtc
+    hitbtc,
+    bisq
   ] = await Promise.all([
     externals.poloniex.call(p1, p2),
     externals.binance.call(p1, p2),
@@ -47,7 +49,8 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     externals.shapeshift.call(p1, p2),
     externals.quadrigacx.call(p1, p2),
     externals.lakebtc.call(p1, p2),
-    externals.hitbtc.call(p1, p2)
+    externals.hitbtc.call(p1, p2),
+    externals.bisq.call(p1, p2)
   ])
 
   const result = {
@@ -60,7 +63,8 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     shapeshift,
     quadrigacx,
     lakebtc,
-    hitbtc
+    hitbtc,
+    bisq
   }
   res.json(result)
 })
