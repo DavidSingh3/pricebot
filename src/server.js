@@ -19,7 +19,9 @@ const externals = {
   quadrigacx: require('./API/quadrigacx'),
   lakebtc: require('./API/quadrigacx'),
   hitbtc: require('./API/hitbtc'),
-  bisq: require('./API/bisq')
+  bisq: require('./API/bisq'),
+  bitz: require('./API/bit-z'),
+  localbitcoins: require('./API/localbitcoins')
 }
 
 // routes will go here
@@ -38,7 +40,9 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     quadrigacx,
     lakebtc,
     hitbtc,
-    bisq
+    bisq,
+    bitz,
+    localbitcoins
   ] = await Promise.all([
     externals.poloniex.call(p1, p2),
     externals.binance.call(p1, p2),
@@ -50,7 +54,9 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     externals.quadrigacx.call(p1, p2),
     externals.lakebtc.call(p1, p2),
     externals.hitbtc.call(p1, p2),
-    externals.bisq.call(p1, p2)
+    externals.bisq.call(p1, p2),
+    externals.bitz.call(p1, p2),
+    externals.localbitcoins.call(p1, p2)
   ])
 
   const result = {
@@ -64,7 +70,9 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     quadrigacx,
     lakebtc,
     hitbtc,
-    bisq
+    bisq,
+    bitz,
+    localbitcoins
   }
   res.json(result)
 })
