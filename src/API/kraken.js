@@ -21,6 +21,7 @@ module.exports = {
     price = price && price.c
     price = price && price[0]
     return price && {
+      n: "Kraken",
       p: price,
       v: volume
     }

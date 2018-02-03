@@ -59,7 +59,7 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     externals.localbitcoins.call(p1, p2)
   ])
 
-  const result = {
+  const result = [
     poloniex,
     binance,
     kucoin,
@@ -73,7 +73,17 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     bisq,
     bitz,
     localbitcoins
-  }
+  ].reduce((accumulator, current) => {
+    if(current)
+      accumulator.push(current)
+    return accumulator
+  }, []).sort((a, b) =>{
+    if(parseFloat(a.v) > parseFloat(b.v))
+      return -1
+    if(parseFloat(a.v) < parseFloat(b.v))
+      return 1
+    return 0
+  })
 
   console.log(result)
   res.json({})

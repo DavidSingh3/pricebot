@@ -15,6 +15,7 @@ module.exports = {
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
     price = price && price.data
     return price && price.last && price.vol && {
+      n: "Bit-Z",
       p: price.last,
       v: price.vol
     } || undefined

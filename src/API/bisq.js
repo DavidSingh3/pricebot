@@ -17,6 +17,7 @@ module.exports = {
     const volume = price && price.volume_left && (price.volume_left>0) && price.volume_left
     price = price && price.last
     return price && {
+      n: "Bisq",
       p: price,
       v: volume
     } || undefined

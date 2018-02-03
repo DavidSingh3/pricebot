@@ -17,6 +17,7 @@ module.exports = {
     const volume = price && price.volume || 0
     price = price && price.price
     return price && {
+      n: "GDAX",
       p: price,
       v: volume
     }

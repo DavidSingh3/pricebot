@@ -16,6 +16,7 @@ module.exports = {
     const volume = price && price.volume || 0
     price = price && price.last
     return price && {
+      n: "QuadrigaCX",
       p: price,
       v: volume
     }

@@ -14,9 +14,10 @@ module.exports = {
     }
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
     price = price && price[pair]
-    const volume = price.volume || 0
+    const volume = price && price.volume || 0
     price = price && price.last
-    return {
+    return price && {
+      n: "LakeBTC",
       p: price,
       v: volume
     }

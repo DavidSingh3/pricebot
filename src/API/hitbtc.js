@@ -14,6 +14,7 @@ module.exports = {
     }
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
     return price && price.last && price.volume && {
+      n: "HitBTC",
       p: price.last,
       v: price.volume
     }

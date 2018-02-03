@@ -3,6 +3,7 @@ module.exports = {
     const pair = p2 + '_' + p1
     const prices = JSON.parse(await poloniex.call())
     return prices[pair] && prices[pair].last && prices[pair].baseVolume && {
+      n: "Poloniex",
       p: prices[pair].last,
       v: prices[pair].baseVolume
     }

@@ -16,6 +16,7 @@ module.exports = {
     const volume = price && price.volume || 0
     price = price && price.last_price
     return price && {
+      n: "Bitfinex",
       p: price,
       v: volume
     }

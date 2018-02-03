@@ -16,6 +16,7 @@ module.exports = {
     price = price && price.rate && price.rate
     price = price && Number(price).toFixed(15).replace(/\.?0+$/,"")
     return price && {
+      n: "ShapeShift",
       p: price,
       v: 0
     }
