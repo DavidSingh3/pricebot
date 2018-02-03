@@ -14,6 +14,9 @@ module.exports = {
         }
     }
     const price = JSON.parse((await request(options, function (response, body) {return response})))
-    return price && price.data && price.data.lastDealPrice
+    return price && price.data && price.data.vol && {
+      p: price.data.lastDealPrice,
+      v: price.data.vol
+    }
   }
 }

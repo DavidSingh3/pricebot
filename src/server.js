@@ -17,7 +17,7 @@ const externals = {
   bitfinex: require('./API/bitfinex'),
   shapeshift: require('./API/shapeshift'),
   quadrigacx: require('./API/quadrigacx'),
-  lakebtc: require('./API/quadrigacx'),
+  lakebtc: require('./API/lakebtc'),
   hitbtc: require('./API/hitbtc'),
   bisq: require('./API/bisq'),
   bitz: require('./API/bit-z'),
@@ -74,7 +74,9 @@ app.post('/price/:pair1/:pair2', async function (req, res) {
     bitz,
     localbitcoins
   }
-  res.json(result)
+
+  console.log(result)
+  res.json({})
 })
 
 // start the server

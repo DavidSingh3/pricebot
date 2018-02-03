@@ -2,10 +2,10 @@ const request = require('../requests').request
 
 module.exports = {
   call: async (p1, p2) => {
-    const pair = p1 + '' + p2
+    const pair = p1 + '' + p2 || 'nothing'
     const options = {
       method: 'GET',
-      url: 'https://api.binance.com/api/v3/ticker/price',
+      url: 'https://api.binance.com/api/v1/ticker/24hr',
       qs: {symbol: pair},
       headers:
         {
@@ -15,7 +15,9 @@ module.exports = {
         }
     }
     const price = JSON.parse((await request(options, function (response, body) {return response})))
-
-    return price && price.price
+    return price && price.lastPrice && price.volume && {
+      p: price.lastPrice,
+      v: price.volume
+    }
   }
 }

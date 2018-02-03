@@ -14,7 +14,11 @@ module.exports = {
         }
     }
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
+    const volume = price && price.volume || 0
     price = price && price.price
-    return price
+    return price && {
+      p: price,
+      v: volume
+    }
   }
 }

@@ -15,6 +15,9 @@ module.exports = {
     let price = JSON.parse((await request(options, function (response, body) {return response}))) || undefined
     price = price && price.rate && price.rate
     price = price && Number(price).toFixed(15).replace(/\.?0+$/,"")
-    return price
+    return price && {
+      p: price,
+      v: 0
+    }
   }
 }
