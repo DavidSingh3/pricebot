@@ -25,7 +25,7 @@ const externals = {
 }
 
 // routes will go here
-app.post('/price/:pair1/:pair2', async function (req, res) {
+app.get('/price/:pair1/:pair2', async function (req, res) {
   try {
     const p1 = req.params.pair1
     const p2 = req.params.pair2
